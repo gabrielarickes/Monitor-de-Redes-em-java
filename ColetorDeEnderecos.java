@@ -1,4 +1,4 @@
-/*coletar os enderecos IP das interfaces de rede da maquina e identificar o tipo (IPv4 ou IPv6) de cada um*/
+/*coleta os enderecos IP das interfaces de rede da maquina e identifica o tipo (IPv4 ou IPv6) de cada um*/
 import java.net.Inet4Address;
 import java.net.Inet6Address;
 import java.net.InetAddress;
@@ -17,7 +17,7 @@ public class ColetorDeEnderecos {
                 NetworkInterface iface = interfaces.nextElement();
                 Enumeration<InetAddress> enderecos = iface.getInetAddresses();
 
-                /* percorre os endereços IP daquela interface*/
+                /* percorre os endereços IP da interface*/
                 while (enderecos.hasMoreElements()) {
                     InetAddress endereco = enderecos.nextElement();
                     imprimirEnderecoComTipo(iface.getName(), endereco);

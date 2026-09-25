@@ -1,6 +1,5 @@
-/* Mede a latencia de rede e calcula a taxa de pacotes perdidos.
+/* Mede a latência de rede e calcula a taxa de pacotes perdidos.
  * O programa identifica automaticamente se esta rodando no Windows ou no Linux.
- *
  * Windows: ping -n 1 -w 2000 host
  * Linux:   ping -c 1 -W 2 host
  */
@@ -13,7 +12,7 @@ public class TestadorDeRede {
 
     private static final int QUANTIDADE_PINGS = 4; // pings enviados por teste
 
-    /* Medicao de latencia */
+    /* Medição de latência */
     public void medirLatencia(String host) {
         float somaLatencias = 0;
         int pacotesRecebidos = 0;
@@ -35,9 +34,9 @@ public class TestadorDeRede {
 
         System.out.println("\n--- Resultado ---");
         if (pacotesRecebidos > 0) {
-            System.out.printf("Latencia media: %.3f ms%n", somaLatencias / pacotesRecebidos);
+            System.out.printf("Latência média: %.3f ms%n", somaLatencias / pacotesRecebidos);
         } else {
-            System.out.println("Latencia media: nao foi possivel calcular (nenhuma resposta)");
+            System.out.println("Latência média: não foi possivel calcular (nenhuma resposta)");
         }
     }
 
@@ -67,7 +66,7 @@ public class TestadorDeRede {
     }
 
     /* Envia UM ping para o host e devolve a latencia em ms.
-     * Retorna -1 quando nao houver resposta. */
+     * Retorna -1 quando não houver resposta. */
     private float enviarUmPing(String host) {
         try {
             String sistemaOperacional = System.getProperty("os.name").toLowerCase();
@@ -122,8 +121,6 @@ public class TestadorDeRede {
         try {
             float tempo = Float.parseFloat(resultado.group(2).replace(',', '.'));
 
-            // No Windows pode aparecer "tempo<1ms". Usamos 0,5 ms apenas para
-            // representar que houve resposta e que o tempo foi menor que 1 ms.
             if (resultado.group(1).equals("<") && tempo == 1.0f) {
                 return 0.5f;
             }
